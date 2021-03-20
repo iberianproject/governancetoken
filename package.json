@@ -1,5 +1,5 @@
 {
-  "name": "xpietoken",
+  "name": "ibrntoken",
   "version": "1.0.0",
   "description": "",
   "main": "truffle-config.js",
@@ -21,17 +21,17 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "flatten": "npx solidity-flattener contracts/Xpie.sol > flattened.sol",
-    "compile": "truffle compile && npx solidity-flattener contracts/Xpie.sol > flattened/Xpie.sol"
+    "flatten": "npx solidity-flattener contracts/IberianToken.sol > flattened.sol",
+    "compile": "truffle compile && npx solidity-flattener contracts/IberianToken.sol > flattened/IberianToken.sol"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LibertyPie/XpieToken.git"
+    "url": "git+https://github.com/iberianproject/governancetoken.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/LibertyPie/XpieToken/issues"
+    "url": "https://github.com/iberianproject/governancetoken/issues"
   },
-  "homepage": "https://github.com/LibertyPie/XpieToken#readme"
+  "homepage": "https://github.com/iberianproject/governancetoken#readme"
 }
