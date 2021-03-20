@@ -1,3 +1,3 @@
-# LibertyPie Governance Token XPIE
-This repository contains contracts for the LibertyPie Governance Token \
-Website: https://libertypie.com
+# Iberian Governance Token IBRN
+This repository contains contracts for the Iberian Governance Token \
+Website: https://iberianproject.com
