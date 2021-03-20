@@ -16,8 +16,8 @@ contract IberianToken is Context, ERC20PresetMinterPauser {
     using SafeMath for uint256;
 
     string constant  _name = "IberianToken";
-    string  constant _symbol = "IBT";
-    uint256 constant _initialSupply = 990_000_000e18; // 990m
+    string  constant _symbol = "IBRN";
+    uint256 constant _initialSupply = 1_300_000e18; // 990m
 
 
     bytes32 public DOMAIN_SEPARATOR; 
@@ -94,7 +94,7 @@ contract IberianToken is Context, ERC20PresetMinterPauser {
         //pre validations
         // amount per mint must be respected
         // hasInitiated is needed as it will prevent this check on deploy time
-        require(_amount <= SafeMath.div(SafeMath.mul(totalSupply(), _mintCap), 100), "Xpie::mint: exceeded mint cap");
+        require(_amount <= SafeMath.div(SafeMath.mul(totalSupply(), _mintCap), 100), "IberianToken::mint: exceeded mint cap");
 
         super.mint(_to, _amount);
 
@@ -125,7 +125,7 @@ contract IberianToken is Context, ERC20PresetMinterPauser {
             )
         );
         address recoveredAddress = ecrecover(digest, v, r, s);
-        require(recoveredAddress != address(0) && recoveredAddress == owner, 'XPIE::permit:  invalid signature');
+        require(recoveredAddress != address(0) && recoveredAddress == owner, 'IberianToken::permit:  invalid signature');
         _approve(owner, spender, value);
     }
 
@@ -184,9 +184,9 @@ contract IberianToken is Context, ERC20PresetMinterPauser {
         bytes32 structHash = keccak256(abi.encode(DELEGATION_TYPEHASH, delegatee, nonce, expiry));
         bytes32 digest = keccak256(abi.encodePacked("\x19\x01", domainSeparator, structHash));
         address signatory = ecrecover(digest, v, r, s);
-        require(signatory != address(0), "Xpie::delegateBySig: invalid signature");
-        require(nonce == nonces[signatory]++, "Xpie::delegateBySig: invalid nonce");
-        require(now <= expiry, "Xpie::delegateBySig: signature expired");
+        require(signatory != address(0), "IberianToken::delegateBySig: invalid signature");
+        require(nonce == nonces[signatory]++, "IberianToken::delegateBySig: invalid nonce");
+        require(now <= expiry, "IberianToken::delegateBySig: signature expired");
         return _delegate(signatory, delegatee);
     }
 
@@ -209,7 +209,7 @@ contract IberianToken is Context, ERC20PresetMinterPauser {
      */
     function getPriorVotes(address account, uint blockNumber) public view returns (uint256) {
         
-        require(blockNumber < block.number, "XXpie::getPriorVotes: not yet determined");
+        require(blockNumber < block.number, "IberianToken::getPriorVotes: not yet determined");
 
         uint32 nCheckpoints = numCheckpoints[account];
         if (nCheckpoints == 0) {
@@ -264,7 +264,7 @@ contract IberianToken is Context, ERC20PresetMinterPauser {
 
     function _writeCheckpoint(address delegatee, uint32 nCheckpoints, uint256 oldVotes, uint256 newVotes) internal {
 
-      uint32 blockNumber = safe32(block.number, "Xpie::_writeCheckpoint: block number exceeds 32 bits");
+      uint32 blockNumber = safe32(block.number, "IberianToken::_writeCheckpoint: block number exceeds 32 bits");
 
       if (nCheckpoints > 0 && checkpoints[delegatee][nCheckpoints - 1].fromBlock == blockNumber) {
           checkpoints[delegatee][nCheckpoints - 1].votes = newVotes;
