@@ -12,7 +12,7 @@
 pragma solidity 0.6.2;
 pragma experimental ABIEncoderV2;
 
-import "./Xpie.sol";
+import "./IberianToken.sol";
 
 contract GovernorAlpha {
 
